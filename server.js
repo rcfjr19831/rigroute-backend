@@ -15,13 +15,14 @@ app.use(express.json());
 
 app.post("/route", async (req, res) => {
   try {
-    const orsUrl = "https://api.heigit.org/openrouteservice/v2/directions/driving-hgv";
+    // FIXED: Updated to the official, stable production endpoint with the required /json ending
+    const orsUrl = "https://api.openrouteservice.org/v2/directions/driving-hgv/json";
 
     const response = await fetch(orsUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: ORS_KEY
+        "Authorization": ORS_KEY
       },
       body: JSON.stringify(req.body)
     });
